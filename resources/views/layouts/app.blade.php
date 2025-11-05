@@ -27,6 +27,7 @@
         @if(session('success')) <div style="color:green">{{ session('success') }}</div> @endif
         @if($errors->any()) <div style="color:red"><ul>@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul></div>@endif
         @yield('content')
+        
     </div>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     @stack('scripts')
