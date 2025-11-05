@@ -17,8 +17,7 @@ body {
 .container {
     width: 90%;
     max-width: 1200px;
-    margin-top: 20px;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
 }
 
 /* === Navbar === */
@@ -39,7 +38,6 @@ body {
     font-size: 1.3rem;
     font-weight: 600;
     color: #f3f4f6;
-    text-decoration: none;
     transition: color 0.3s ease;
 }
 
@@ -49,7 +47,6 @@ body {
 
 .nav-right a {
     color: #e5e7eb;
-    text-decoration: none;
     margin-right: 15px;
     font-size: 0.95rem;
     transition: color 0.2s ease;
@@ -147,6 +144,27 @@ button:hover, .btn:hover {
     background-color: #2563eb;
 }
 
+.btn-sm {
+    padding: 6px 10px;
+    font-size: 0.85rem;
+}
+
+.btn-secondary {
+    background-color: #6b7280;
+}
+
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+
+.btn-danger {
+    background-color: #ef4444;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+}
+
 /* === Form Inputs === */
 input, select, textarea {
     width: 100%;
@@ -162,6 +180,10 @@ input:focus, select:focus, textarea:focus {
     border-color: #3b82f6;
     outline: none;
     box-shadow: 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+.comment-form textarea {
+    resize: vertical;
 }
 
 /* === Footer === */
@@ -273,15 +295,6 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* === Comments === */
-.comment-form textarea {
-    width: 100%;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    padding: 10px;
-    margin-bottom: 10px;
-    resize: vertical;
-}
-
 .comments-list {
     background: #fff;
     padding: 15px;
@@ -291,7 +304,9 @@ input:focus, select:focus, textarea:focus {
 }
 
 .no-data {
+    text-align: center;
     color: #9ca3af;
+    margin-top: 25px;
     font-style: italic;
 }
 
@@ -315,8 +330,7 @@ input:focus, select:focus, textarea:focus {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
-    margin-bottom: 25px;
+    margin: 20px 0 25px 0;
     flex-wrap: wrap;
     gap: 10px;
 }
@@ -382,7 +396,6 @@ input:focus, select:focus, textarea:focus {
     line-height: 1.4;
 }
 
-/* Action buttons */
 .project-actions-inline {
     display: flex;
     gap: 8px;
@@ -391,32 +404,4 @@ input:focus, select:focus, textarea:focus {
 
 .inline-form {
     display: inline;
-}
-
-.btn-sm {
-    padding: 6px 10px;
-    font-size: 0.85rem;
-}
-
-.btn-secondary {
-    background-color: #6b7280;
-}
-
-.btn-secondary:hover {
-    background-color: #4b5563;
-}
-
-.btn-danger {
-    background-color: #ef4444;
-}
-
-.btn-danger:hover {
-    background-color: #dc2626;
-}
-
-.no-data {
-    text-align: center;
-    color: #9ca3af;
-    margin-top: 25px;
-    font-style: italic;
 }
