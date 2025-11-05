@@ -1,11 +1,16 @@
 @extends('layouts.app')
 @section('content')
+<div class="container">
 <h2>{{ $project->title }}</h2>
 <p>{{ $project->description }}</p>
 
+<br>
+
 <h3>Tasks</h3>
+<br>
 <p><a href="{{ route('tasks.create') }}">Create Task</a></p>
 <ul>
+<br>
 @foreach($project->tasks as $task)
     <li>
         <b>{{ $task->title }}</b> — Status: 
@@ -23,6 +28,7 @@
     </li>
 @endforeach
 </ul>
+<br>
 
 <h3>Comments</h3>
 <div id="comments">
@@ -30,6 +36,7 @@
     <div><b>{{ $c->user->name }}</b>: {{ $c->content }} — <small>{{ $c->created_at->diffForHumans() }}</small></div>
 @endforeach
 </div>
+<br>
 
 <h4>Add Comment</h4>
 <form id="projectCommentForm">
@@ -37,7 +44,7 @@
     <textarea id="commentText" rows="3" cols="50"></textarea><br>
     <button id="postComment" type="button">Post Comment</button>
 </form>
-
+</div>
 @push('scripts')
 <script>
 $('.task-status').change(function(){

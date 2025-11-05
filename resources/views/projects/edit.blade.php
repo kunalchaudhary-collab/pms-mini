@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<div class="container">
 <h2>Edit Project</h2>
 <form method="POST" action="{{ route('projects.update',$project) }}">
     @csrf @method('PUT')
@@ -7,4 +8,5 @@
     <div><label>Description</label><br><textarea name="description">{{ old('description',$project->description) }}</textarea></div>
     <div><button>Update</button></div>
 </form>
+</div>
 @endsection

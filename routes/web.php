@@ -7,10 +7,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Models\ActivityLog;
-use Illuminate\Support\Facades\Auth;
-
 //  index
 Route::get('/', function () {
     return redirect()->route('login');
@@ -43,6 +39,7 @@ Route::middleware('auth')->group(function(){
 
     // Comments
     Route::post('/comment',[CommentController::class,'store'])->name('comment.store');
+    Route::get('/comment-list',[CommentController::class,'commentList'])->name('comments.list');
 
     // Activity logs
     Route::get('/activity',[ActivityLogController::class,'index'])->name('activity.index');

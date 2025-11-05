@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+<div class="container">
+
 <h2>Create Task</h2>
 <form method="POST" action="{{ route('tasks.store') }}">
     @csrf
@@ -23,4 +25,5 @@
     <div><label>Due Date</label><br><input name="due_date" type="date"></div>
     <div><button>Create Task</button></div>
 </form>
+</div>
 @endsection

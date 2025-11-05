@@ -24,4 +24,13 @@ class CommentController extends Controller {
         }
         return back()->with('success','Comment added.');
     }
+
+       public function commentList()
+    {
+        $comments = Comment::with('user')->latest()->take(10)->get();
+        $html = view('commentlist', compact('comments'))->render();
+        return response()->json([
+            'html' => $html,
+        ]);
+    }
 }
