@@ -1,7 +1,7 @@
 # 🗂️ Project Management System (PMS) — Laravel 12
 
 
-A simple and functional **Project Management System** built with **Laravel 10+** that demonstrates Authentication, CRUD, Task Assignment, Commenting, and Activity Logging (with JSON data).
+A simple and functional **Project Management System** built with **Laravel 12+** that demonstrates Authentication, CRUD, Task Assignment, Commenting, and Activity Logging (with JSON data).
 
 ---
 
