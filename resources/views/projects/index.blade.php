@@ -53,5 +53,62 @@
             <p class="no-data">No projects found. <a href="{{ route('projects.create') }}">Create one?</a></p>
         @endforelse
     </div>
+    <hr>
+    <hr>
 </div>
+ <!-- === Public Comments === -->
+    <div class="section">
+        <h3>Public Comments</h3>
+        <div id="CommentsResult" class="comments-list"></div>
+    </div>
+
+    <!-- === Add Comment Form === -->
+    <div class="section">
+        <h3>Add Public Comment</h3>
+        <form id="publicCommentForm" class="comment-form">
+            @csrf
+            <textarea name="content" id="publicCommentText" rows="3" placeholder="Write your comment..."></textarea>
+            <button id="postPublicComment" type="button" class="btn">Post Comment</button>
+        </form>
+    </div>
+</div>
+
+@push('scripts')
+<script>
+$(document).ready(function() {
+    function loadComments() {
+        $.ajax({
+            url: '{{ route('comments.list') }}',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                $('#CommentsResult').html(response.html);
+            }
+        });
+    }
+
+    loadComments();
+
+    $('#postPublicComment').click(function(e) {
+        e.preventDefault();
+        let content = $('#publicCommentText').val().trim();
+        if (!content) {
+            alert('Please enter a comment before posting.');
+            return;
+        }
+        $.post('{{ route('comment.store') }}', {
+            _token: '{{ csrf_token() }}',
+            content: content
+        }, function(resp) {
+            if (resp.user) {
+                $('#publicCommentText').val('');
+                loadComments();
+            }
+        }).fail(function() {
+            alert('Something went wrong while posting your comment.');
+        });
+    });
+});
+</script>
+@endpush
 @endsection

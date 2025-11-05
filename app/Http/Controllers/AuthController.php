@@ -17,7 +17,6 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
-
     public function register(Request $r)
     {
         $r->validate([
@@ -37,7 +36,7 @@ class AuthController extends Controller
 
     public function login(Request $r)
     {
-        $credentials = $r->validate(['email' => 'required|email', 'password' => 'required']);
+        $credentials = $r->validate(['email' => 'required|email|exists:users,email', 'password' => 'required']);
         if (Auth::attempt($credentials)) {
             $r->session()->regenerate();
             logActivity('User logged in', ['user_id' => auth()->id()]);

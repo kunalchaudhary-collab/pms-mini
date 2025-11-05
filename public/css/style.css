@@ -4,6 +4,16 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+
+}
+li{
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid black;
+    margin: 10px 10px;
+    list-style: none;
+
+
 }
 
 body {
@@ -405,3 +415,4 @@ input:focus, select:focus, textarea:focus {
 .inline-form {
     display: inline;
 }
+
