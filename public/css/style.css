@@ -207,7 +207,7 @@ input:focus, select:focus, textarea:focus {
 
 /* === Dashboard Styles === */
 .dashboard {
-    margin-top: 20px;
+    margin-top: 107px;
 }
 
 .dashboard-header {
@@ -472,5 +472,10 @@ main {
   padding-top: 70px;
 }
 
-/* Just for demo */
-secti
+.projects-page {
+    margin-top: 64px;
+}
+
+main {
+    padding-top: 104px;
+}
