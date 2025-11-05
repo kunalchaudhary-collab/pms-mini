@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>PMS Mini</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    <nav>
+    <nav class="navbar">
         @auth
             <a href="{{ route('dashboard') }}">Dashboard</a> |
             <a href="{{ route('projects.index') }}">Projects</a> |
@@ -17,7 +18,7 @@
             </form>
             <span> | {{ auth()->user()->name }}</span>
         @else
-            <a href="{{ route('login') }}">Login</a> |
+            <a href="{{ route('login') }}">Login</a>| 
             <a href="{{ route('register') }}">Register</a>
         @endauth
     </nav>
@@ -27,7 +28,7 @@
         @if($errors->any()) <div style="color:red"><ul>@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul></div>@endif
         @yield('content')
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
     @stack('scripts')
 </body>
 </html>
