@@ -11,14 +11,23 @@ class AuthController extends Controller
 {
     public function showRegister()
     {
+        if(Auth::check()){
+            return redirect()->route('dashboard');
+        }
         return view('auth.register');
     }
     public function showLogin()
     {
+        if(Auth::check()){
+            return redirect()->route('dashboard');
+        }
         return view('auth.login');
     }
     public function register(Request $r)
     {
+        if(Auth::check()){
+            return redirect()->route('login');
+        }
         $r->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
