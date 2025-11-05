@@ -38,7 +38,7 @@ A simple and functional **Project Management System** built with **Laravel 12+**
 ### 1️⃣ Clone or Download the Repository
 
 ```bash
-git clone https://github.com/kunalchaudhary-collab/pms-mini
+git clone https://gitlab.rcvtechnologies.com/kunal.chaudhary/pms_product.git
 cd pms-laravel-mini
 ```
 
