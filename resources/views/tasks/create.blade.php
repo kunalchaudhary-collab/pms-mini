@@ -18,7 +18,7 @@
         <select name="assigned_to">
             <option value="">--none--</option>
             @foreach($users as $u)
-                <option value="{{ $u->id }}">{{ $u->name }}</option>
+                <option value="{{ $u->id }}">{{ $u->email }}</option>
             @endforeach
         </select>
     </div>
