@@ -16,7 +16,6 @@ Route::get('/register',[AuthController::class,'showRegister'])->name('register')
 Route::post('/register',[AuthController::class,'register']);
 Route::get('/login',[AuthController::class,'showLogin'])->name('login');
 Route::post('/login',[AuthController::class,'login']);
-Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 // Protected routes
 Route::middleware('auth')->group(function(){
@@ -43,4 +42,6 @@ Route::middleware('auth')->group(function(){
 
     // Activity logs
     Route::get('/activity',[ActivityLogController::class,'index'])->name('activity.index');
+    Route::post('/logout',[AuthController::class,'logout'])->name('logout');
+
 });

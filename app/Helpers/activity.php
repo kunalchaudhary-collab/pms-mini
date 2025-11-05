@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\ActivityLog;
+use App\Models\User;
 
 if (! function_exists('logActivity')) {
     function logActivity($action, $data = null)

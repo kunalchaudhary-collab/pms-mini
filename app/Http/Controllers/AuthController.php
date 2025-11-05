@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
@@ -39,7 +40,7 @@ class AuthController extends Controller
             'password' => Hash::make($r->password)
         ]);
         Auth::login($user);
-        logActivity('User registered', ['user_id' => $user->id, 'email' => $user->email]);
+        logActivity("$user->email:-  User registered", ['user_id' => $user->id, 'email' => $user->email ]);
         return redirect()->route('dashboard');
     }
 
@@ -48,15 +49,18 @@ class AuthController extends Controller
         $credentials = $r->validate(['email' => 'required|email|exists:users,email', 'password' => 'required']);
         if (Auth::attempt($credentials)) {
             $r->session()->regenerate();
-            logActivity('User logged in', ['user_id' => auth()->id()]);
+            $user=Auth::user();
+            logActivity("$user->email:- :-User logged in", ['user_id' => auth()->id()]);
             return redirect()->route('dashboard');
         }
+        Log::error("Invalid credentials by $r->email");
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
 
     public function logout(Request $r)
     {
-        logActivity('User logged out', ['user_id' => auth()->id()]);
+        $user=Auth::user();
+        logActivity("$user->email:- :User logged out", ['user_id' => auth()->id()]);
         Auth::logout();
         $r->session()->invalidate();
         $r->session()->regenerateToken();

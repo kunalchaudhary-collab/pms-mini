@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller {
     public function index(Request $r){
@@ -17,8 +18,9 @@ class ProjectController extends Controller {
     public function store(Request $r){
         $data = $r->validate(['title'=>'required','description'=>'nullable','start_date'=>'nullable|date','end_date'=>'nullable|date','visibility'=>'in:private,public']);
         $data['user_id'] = auth()->id();
+        $user=Auth::user();
         $project = Project::create($data);
-        logActivity('Created project', ['project_id'=>$project->id,'title'=>$project->title]);
+        logActivity("$user->email:-  Created project", ['project_id'=>$project->id,'title'=>$project->title]);
         return redirect()->route('projects.index')->with('success','Project created.');
     }
 
@@ -37,14 +39,16 @@ class ProjectController extends Controller {
         $this->authorizeView($project);
         $data = $r->validate(['title'=>'required','description'=>'nullable','start_date'=>'nullable|date','end_date'=>'nullable|date','visibility'=>'in:private,public']);
         $old = $project->getOriginal();
+        $user=Auth::user();
         $project->update($data);
-        logActivity('Updated project', ['project_id'=>$project->id,'old'=>$old,'new'=>$project->toArray()]);
+        logActivity("$user->email:-  Updated project", ['project_id'=>$project->id,'old'=>$old,'new'=>$project->toArray()]);
         return redirect()->route('projects.show',$project)->with('success','Project updated.');
     }
 
     public function destroy(Project $project){
         $this->authorizeView($project);
-        logActivity('Deleted project', ['project_id'=>$project->id,'title'=>$project->title]);
+        $user=Auth::user();
+        logActivity("$user->email:-  Deleted project", ['project_id'=>$project->id,'title'=>$project->title]);
         $project->delete();
         return redirect()->route('projects.index')->with('success','Project deleted.');
     }

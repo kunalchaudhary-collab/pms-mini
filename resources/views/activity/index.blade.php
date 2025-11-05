@@ -5,13 +5,11 @@
         <input name="search" placeholder="Search action" value="{{ request('search') }}">
         <button>Search</button>
     </form>
-    @foreach ($logs as $log)
+    @forelse ($logs as $log)
         <div style="border-bottom:1px solid #ddd;padding:6px 0;">
-            <b>{{ $log->action }}</b> — <small>{{ $log->created_at->diffForHumans() }}</small>
-            @if ($log->data)
-                <pre>{{ json_encode($log->data, JSON_PRETTY_PRINT) }}</pre>
-            @endif
+            <p>{{ $log->action }}</p> — <small>{{ $log->created_at->diffForHumans() }}</small>
         </div>
-    @endforeach
-
+    @empty
+        <p class="no-data">No recent activity found.</p>
+    @endforelse
 @endsection

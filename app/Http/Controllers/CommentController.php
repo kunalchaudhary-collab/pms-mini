@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller {
     // Store comment (AJAX or regular)
@@ -12,8 +13,9 @@ class CommentController extends Controller {
             'content'=>'required|string'
         ]);
         $data['user_id'] = auth()->id();
+        $user=Auth::user();
         $comment = Comment::create($data);
-        logActivity('Added comment', ['comment_id'=>$comment->id,'on'=>isset($data['task_id']) ? 'task' : 'project','content'=>substr($comment->content,0,200)]);
+        logActivity("$user->email:- Added comment", ['comment_id'=>$comment->id,'on'=>isset($data['task_id']) ? 'task' : 'project','content'=>substr($comment->content,0,200)]);
         if ($r->expectsJson() || $r->ajax()) {
             return response()->json([
                 'id'=>$comment->id,

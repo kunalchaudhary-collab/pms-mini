@@ -38,18 +38,17 @@
                 @forelse ($logs as $log)
                     <li class="activity-item">
                         <div class="activity-header">
-                            <strong>{{ ucfirst($log->action) }}</strong>
+                            <small>{{ $log->action }}</small>
                             <small>{{ $log->created_at->diffForHumans() }}</small>
                         </div>
-                        @if ($log->data)
-                            <pre class="activity-data">{{ json_encode($log->data, JSON_PRETTY_PRINT) }}</pre>
-                        @endif
+
                     </li>
                 @empty
                     <p class="no-data">No recent activity found.</p>
                 @endforelse
             </ul>
         </div>
+
         <hr>
         <hr>
         <!-- === Public Comments === -->
